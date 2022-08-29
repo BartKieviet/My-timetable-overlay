@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "HHS MyTimetable Overlay",
+  "version": "0.7",
+  "permissions": [
+   "storage"
+  ],
+  "content_scripts": [
+  	{
+		"matches": ["https://mytimetable.hhs.nl/schedule"],
+		"js": ["timetable-overlay.js"]
+	}
+	]
+}
