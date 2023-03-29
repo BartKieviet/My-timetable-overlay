@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "THUAS MyTimetable Overlay",
+  "name": "MyTimetable QOL Package",
   "version": "1.0",
   "permissions": [
    "storage"
