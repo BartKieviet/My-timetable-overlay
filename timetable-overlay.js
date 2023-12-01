@@ -111,8 +111,24 @@ function copyClass() {
 	let tijd = datum.slice( datum.length-13, datum.length );
 	let list = document.getElementsByClassName('GNKVYU1DS')[0].getElementsByClassName('GNKVYU1BS');
 	for (let i = 0; i < list.length; i++) {
-		data[i] = list[i].lastChild.textContent; // vakcode, vak, locatie, docent, groep, id
+		if (i==3) {
+			let tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
+			data[i] = tmpList[0].textContent;
+			for (let j = 1; j < tmpList.length; j++) {
+				data[i] += ', ' + tmpList[j].textContent;
+			}			
+		} else if (i==4) { // groups are split in own divs.
+			let tmpList = list[i].lastChild.getElementsByClassName('gwt-HTML');
+			data[i] = tmpList[0].textContent;
+			for (let j = 1; j < tmpList.length; j++) {
+				data[i] += ', ' + tmpList[j].textContent;
+			}
+		}
+		else {
+			data[i] = list[i].lastChild.textContent; // vakcode, vak, locatie, docent, groep, id
+		}
+		
 	}
-	console.log(data);
+	// console.log(data);
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
 }
