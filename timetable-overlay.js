@@ -56,26 +56,6 @@ function addBtn() {
 		
 		btn.addEventListener( 'click', copyClass );
 		buttonAdded2 = true;
-		
-		// console.log(document.getElementsByClassName('gwt-PopupPanel')[0]);
-		// alert('test');
-		// var list = ["keypress", "keydown", "keyup"]
-		// var eventlistener = getEventListeners(window);
-		// for ( let i=0; i<3; i++ ) {
-			// window.removeEventListener(list[i], 
-							// eventlistener.keypress.listener,
-                            // eventlistener.keypress.useCapture);
-			// console.log(i);
-		// }
-		// var eventlistener = getEventListeners(window)["keypress"][index];
-		// window.removeEventListener("DOMContentLoaded", 
-                           // eventlistener.listener,
-                           // eventlistener.useCapture);
-		// var div = document.getElementsByClassName('gwt-PopupPanel')[0];
-		// div.removeEventListener('keydown', zj);
-		// div.removeEventListener('keypress', zj);
-		// div.removeEventListener('keyup', zj);
-		//observer.disconnect();
 	}
 	
 }
@@ -129,6 +109,9 @@ function copyClass() {
 		}
 		
 	}
+	data[6] = lesnaam;
+	data[7] = datum.slice(0, datum.length-13);
 	// console.log(data);
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
+	chrome.storage.local.set( {'classdata':data } );
 }
