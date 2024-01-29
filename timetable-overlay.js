@@ -91,7 +91,7 @@ function copyClass() {
 	let tijd = datum.slice( datum.length-13, datum.length );
 	let list = document.getElementsByClassName('GNKVYU1DS')[0].getElementsByClassName('GNKVYU1BS');
 	for (let i = 0; i < list.length; i++) {
-		if (i==3) {
+		if (i==3) { // teachers 
 			let tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
 			data[i] = tmpList[0].textContent;
 			for (let j = 1; j < tmpList.length; j++) {
@@ -99,7 +99,7 @@ function copyClass() {
 			}			
 		} else if (i==4) { // groups are split in own divs.
 			let tmpList = list[i].lastChild.getElementsByClassName('gwt-HTML');
-			data[i] = tmpList[0].textContent;
+			tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
 			for (let j = 1; j < tmpList.length; j++) {
 				data[i] += ', ' + tmpList[j].textContent;
 			}
