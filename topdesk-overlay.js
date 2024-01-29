@@ -23,7 +23,7 @@ function pasteRosterData( data ) {
 	
 	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_description_description_description').value = classdata[6]; 
 	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion3_openquestion_openquestion').value = classdata[5]; // ID
-	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion4_openquestion_openquestion').value = classdata[1];  // module
+	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion4_openquestion_openquestion').value = classdata[0];  // module
 	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion5_openquestion_openquestion').value = classdata[6]; // lesnaam
 	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion6_openquestion_openquestion').value = classdata[4]; // groep
 	document.getElementById('ssdform147f76c6e71847d1803beb82fe346e2e_openquestion7_openquestion_openquestion').value = classdata[3]; // docent
