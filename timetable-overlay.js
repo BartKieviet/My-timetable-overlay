@@ -111,6 +111,7 @@ function copyClass() {
 	}
 	data[6] = lesnaam;
 	data[7] = datum.slice(0, datum.length-13);
+	data[8] = tijd;
 	// console.log(data);
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
 	chrome.storage.local.set( {'classdata':data } );

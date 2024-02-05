@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MyTimetable QOL Package",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "permissions": [
    "storage"
   ],
@@ -17,5 +17,12 @@
 		"match_about_blank": true,
 		"match_origin_as_fallback": true
 	}
-	]
+	],
+	"action": {
+		"default_title": "Options",  
+		"default_popup": "popup.html" 
+	},
+	"options_ui": {
+		"page": "options.html"
+	}
 }
