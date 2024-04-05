@@ -38,24 +38,34 @@ function addBtn() {
 	
 	if (document.getElementsByClassName('gwt-PopupPanelGlass')[0] && !buttonAdded2) {
 		var sluitButton = document.getElementsByClassName('GNKVYU1HO')[0];
-		var btn = document.createElement('button');
-		var btnOuterDiv = document.createElement('div');
-		var btnInnerDiv = document.createElement('div');
-		let txt = document.createTextNode('&nbsp;');
-		
+
 		sluitButton.addEventListener('click', resetCopyBtn );
+		
+		var btn = document.createElement('button');		
 		btn.textContent = 'Copy';
-		btn.className = 'gwt-Button';
-		btnOuterDiv.className = 'GNKVYU1HO';
-		
-		sluitButton.parentElement.appendChild( btnOuterDiv );
-		
-		btnOuterDiv.appendChild( btnInnerDiv );
-		btnInnerDiv.appendChild( btn );
-		btnInnerDiv.appendChild( new Text( '\u00A0' ) );
-		
+		btn.id = 'mttqol-copyclass';		
 		btn.addEventListener( 'click', copyClass );
+		formatBtn( btn );
 		buttonAdded2 = true;
+		
+		var btnAutoPaste = document.createElement('button');
+		btnAutoPaste.textContent = 'Auto TD';
+		btnAutoPaste.id = 'mttqol-autotd';
+		btnAutoPaste.addEventListener( 'click', copyClass );
+		formatBtn( btnAutoPaste );
+
+
+		function formatBtn( buttonElement ) {
+			let btnOuterDiv = document.createElement('div');
+			let btnInnerDiv = document.createElement('div');
+			
+			buttonElement.className = 'gwt-Button';
+			btnOuterDiv.className = 'GNKVYU1HO';
+			btnOuterDiv.appendChild( btnInnerDiv );
+			btnInnerDiv.appendChild( buttonElement );
+			btnInnerDiv.appendChild( new Text( '\u00A0' ) );
+			sluitButton.parentElement.appendChild( btnOuterDiv );
+		}
 	}
 	
 }
@@ -83,6 +93,7 @@ function resetCopyBtn() {
 }
 
 function copyClass() {
+	
 	let data = [];
 	let outString = '';
 	
@@ -112,7 +123,13 @@ function copyClass() {
 	data[6] = lesnaam;
 	data[7] = datum.slice(0, datum.length-13);
 	data[8] = tijd;
-	// console.log(data);
+
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
-	chrome.storage.local.set( {'classdata':data } );
+
+	if ( this.id == 'mttqol-autotd' ) {
+		chrome.storage.local.set( {'classdata':data, 'autotd':true } );
+		window.open("https://hhs.topdesk.net/tas/public/ssp/content/serviceflow?unid=d62326f88a0b4d80a1a4717b47ae3bc4");
+	} else {
+		chrome.storage.local.set( {'classdata':data, 'autotd':false } );
+	}
 }
