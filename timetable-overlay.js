@@ -104,7 +104,7 @@ function copyClass() {
 	for (let i = 0; i < list.length; i++) {
 		if (i==3) { // teachers 
 			let tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
-			data[i] = tmpList[0].textContent;
+			tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
 			for (let j = 1; j < tmpList.length; j++) {
 				data[i] += ', ' + tmpList[j].textContent;
 			}			
