@@ -11,7 +11,7 @@ observer.observe(document.body, config);
 
 function addBtn() {
 	
-	if (document.getElementsByClassName('GNKVYU1FP')[1] && !buttonAdded) {
+	if (document.getElementsByClassName('GNKVYU1FP')[1] && !buttonAdded) { // weeknumber
 		//observer.disconnect();
 		var dateRow = document.getElementsByClassName('GNKVYU1FP')[1];
 		var div = document.createElement('div');
@@ -37,7 +37,7 @@ function addBtn() {
 	}
 	
 	if (document.getElementsByClassName('gwt-PopupPanelGlass')[0] && !buttonAdded2) {
-		var sluitButton = document.getElementsByClassName('GNKVYU1HO')[0];
+		var sluitButton = document.getElementsByClassName('GNKVYU1JO')[0];
 
 		sluitButton.addEventListener('click', resetCopyBtn );
 		
@@ -60,7 +60,7 @@ function addBtn() {
 			let btnInnerDiv = document.createElement('div');
 			
 			buttonElement.className = 'gwt-Button';
-			btnOuterDiv.className = 'GNKVYU1HO';
+			btnOuterDiv.className = 'GNKVYU1JO';
 			btnOuterDiv.appendChild( btnInnerDiv );
 			btnInnerDiv.appendChild( buttonElement );
 			btnInnerDiv.appendChild( new Text( '\u00A0' ) );
@@ -97,10 +97,10 @@ function copyClass() {
 	let data = [];
 	let outString = '';
 	
-	let lesnaam = document.getElementsByClassName('gwt-Label GNKVYU1HR')[0].textContent; // lesnaam
-	let datum = document.getElementsByClassName('GNKVYU1DS')[0].parentNode.firstChild.textContent; //datum en tijd
-	let tijd = datum.slice( datum.length-13, datum.length );
-	let list = document.getElementsByClassName('GNKVYU1DS')[0].getElementsByClassName('GNKVYU1BS');
+	let lesnaam = document.getElementsByClassName('gwt-Label GNKVYU1JR')[0].textContent; // lesnaam
+	let datum = document.getElementsByClassName('gwt-Label GNKVYU1AT')[0].textContent; //datum
+	let tijd = document.getElementsByClassName('gwt-Label GNKVYU1BT')[0].textContent; //tijd
+	let list = document.getElementsByClassName('GNKVYU1FS')[0].getElementsByClassName('GNKVYU1DS');
 	for (let i = 0; i < list.length; i++) {
 		if (i==3) { // teachers 
 			let tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
@@ -121,10 +121,11 @@ function copyClass() {
 		
 	}
 	data[6] = lesnaam;
-	data[7] = datum.slice(0, datum.length-13);
+	data[7] = datum;
 	data[8] = tijd;
 
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
+	console.log(data);
 
 	if ( this.id == 'mttqol-autotd' ) {
 		chrome.storage.local.set( {'classdata':data, 'autotd':true } );
