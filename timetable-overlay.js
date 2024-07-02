@@ -11,25 +11,26 @@ observer.observe(document.body, config);
 
 function addBtn() {
 	
-	if (document.getElementsByClassName('GNKVYU1FP')[1] && !buttonAdded) { // weeknumber
+	if (document.getElementsByClassName('GNKVYU1HP')[1] && !buttonAdded) { // weeknumber
 		//observer.disconnect();
-		var dateRow = document.getElementsByClassName('GNKVYU1FP')[1];
+		console.log('go');
+		var dateRow = document.getElementsByClassName('GNKVYU1HP')[1];
 		var div = document.createElement('div');
-		div.className = 'GNKVYU1KP';
+		div.className = 'GNKVYU1MP';
 		var btn = document.createElement('button');
 		btn.textContent = 'Copy';
-		btn.id = 'timetable-overlay-copy-button';
+		btn.id = 'mttqol-overlay-copy-button';
 		btn.className = 'gwt-Button';
 		div.appendChild( btn );
 		dateRow.appendChild( div );
 		btn.addEventListener( 'click', saveView );
 		
 		div = document.createElement('div');
-		div.className = 'GNKVYU1KP';
+		div.className = 'GNKVYU1MP';
 		btn = document.createElement('button');
 		btn.textContent = 'Paste';
 		btn.className = 'gwt-Button';
-		btn.id = 'timetable-overlay-copy-button';
+		btn.id = 'mttqol-overlay-copy-button';
 		div.appendChild( btn );
 		dateRow.appendChild( div );
 		btn.addEventListener( 'click', pasteView );
@@ -125,8 +126,7 @@ function copyClass() {
 	data[8] = tijd;
 
 	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
-	console.log(data);
-
+	
 	if ( this.id == 'mttqol-autotd' ) {
 		chrome.storage.local.set( {'classdata':data, 'autotd':true } );
 		window.open("https://hhs.topdesk.net/tas/public/ssp/content/serviceflow?unid=d62326f88a0b4d80a1a4717b47ae3bc4");
