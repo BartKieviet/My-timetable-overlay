@@ -96,36 +96,42 @@ function resetCopyBtn() {
 function copyClass() {
 	
 	let data = [];
-	let outString = '';
 	
 	let lesnaam = document.getElementsByClassName('gwt-Label GNKVYU1JR')[0].textContent; // lesnaam
 	let datum = document.getElementsByClassName('gwt-Label GNKVYU1AT')[0].textContent; //datum
 	let tijd = document.getElementsByClassName('gwt-Label GNKVYU1BT')[0].textContent; //tijd
 	let list = document.getElementsByClassName('GNKVYU1FS')[0].getElementsByClassName('GNKVYU1DS');
+	
 	for (let i = 0; i < list.length; i++) {
-		if (i==3) { // teachers 
-			let tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
-			tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
-			for (let j = 1; j < tmpList.length; j++) {
-				data[i] += ', ' + tmpList[j].textContent;
-			}			
-		} else if (i==4) { // groups are split in own divs.
-			let tmpList = list[i].lastChild.getElementsByClassName('gwt-HTML');
-			tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
-			for (let j = 1; j < tmpList.length; j++) {
-				data[i] += ', ' + tmpList[j].textContent;
-			}
-		}
-		else {
-			data[i] = list[i].lastChild.textContent; // vakcode, vak, locatie, docent, groep, id
-		}
-		
+		let tmpList = [];
+		switch( list[i].firstElementChild.textContent ) {
+			// case 'Modulecode': 
+			// case 'Module':
+			// case 'Locatie(s)':
+			case 'Docent(en)':
+				tmpList = list[i].lastChild.getElementsByClassName('gwt-Label');
+				tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
+				for (let j = 1; j < tmpList.length; j++) {
+					data[i] += ', ' + tmpList[j].textContent;
+				}
+				break;
+			case 'Groep(en)': // groups are split in own divs.
+				tmpList = list[i].lastChild.getElementsByClassName('gwt-HTML');
+				tmpList[0] ? data[i] = tmpList[0].textContent : data[i] = '';
+				for (let j = 1; j < tmpList.length; j++) {
+					data[i] += ', ' + tmpList[j].textContent;
+				}
+				break;
+			// case 'ID':
+			default: 
+				data[i] = list[i].lastChild.textContent;
+		}		
 	}
 	data[6] = lesnaam;
 	data[7] = datum;
 	data[8] = tijd;
 
-	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum.slice(0, datum.length-13) + '\t' + tijd );
+	navigator.clipboard.writeText( data[3] +'\t'+ data[5] +'\t'+ lesnaam +'\t'+ data[4] +'\t'+ datum + '\t' + tijd );
 	
 	if ( this.id == 'mttqol-autotd' ) {
 		chrome.storage.local.set( {'classdata':data, 'autotd':true } );
