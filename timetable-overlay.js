@@ -12,8 +12,8 @@ observer.observe(document.body, config);
 function addBtn() {
 	
 	if (document.getElementsByClassName('GNKVYU1HP')[1] && !buttonAdded) { // weeknumber
-		//observer.disconnect();
-		console.log('go');
+		// observer.disconnect();
+		// console.log('go');
 		var dateRow = document.getElementsByClassName('GNKVYU1HP')[1];
 		var div = document.createElement('div');
 		div.className = 'GNKVYU1MP';
